@@ -14,7 +14,7 @@ class columns
             columnDate,
             columnTime,
             columnDateTime,
-            columnDecimalFloat,
+            columnDecimal,
             columnInt,
             columnVarchar;
 
@@ -41,9 +41,12 @@ class columns
 
     public:
         void CheckDirectories() {
+            GetFileNames("Columns/Date/", columnDate);
+            GetFileNames("Columns/DateTime/", columnDateTime);
+            GetFileNames("Columns/Decimal/", columnDecimal);
             GetFileNames("Columns/Int/", columnInt);
-            GetFileNames("Columns/Decimal/", columnDecimalFloat);
-
+            GetFileNames("Columns/Time/", columnTime);
+            GetFileNames("Columns/Varchar/", columnVarchar);
         }
 
 };
