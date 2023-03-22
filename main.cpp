@@ -2,20 +2,20 @@
 #include <vector>
 #include "columns.cpp"
 #include "records.cpp"
-#include <ctime>
+#include <algorithm>
 
 columns cols;
 records recs;
-
             
 void PushVectors() {
-std::vector<std::string> 
-            dateFileName,
-            dateTimeFileName,
-            decimalFileName,
-            intFileName,
-            timeFileName,
-            varcharFileName;
+    std::vector<std::string> 
+        dateFileName,
+        dateTimeFileName,
+        decimalFileName,
+        intFileName,
+        timeFileName,
+        varcharFileName;
+    cols.directory.reserve(6);
     cols.AddDirectory("Columns/Date/", dateFileName); // id 0
     cols.AddDirectory("Columns/DateTime/", dateTimeFileName); // id 1
     cols.AddDirectory("Columns/Decimal/", decimalFileName); // id 2
@@ -28,10 +28,16 @@ std::vector<std::string>
 
 int main() {
     PushVectors();
+        int i =0;
     for(auto& vec : cols.directory) {
         if(!vec.empty())
-        for(auto& name : vec) {
-            std::cout << name << std::endl;
+        for(auto& fileName : vec) {
+            std::cout << fileName << std::endl;
+            recs.ReadFIle(cols.filePath[i],fileName);
+            for(auto& line : recs.contentLine) {
+                std::cout << line << std::endl;
+            }
         }
+        i++;
     }
 }
