@@ -10,22 +10,17 @@ class columns
 {
 
     public:
-        std::vector<std::string> 
-            columnDate,
-            columnTime,
-            columnDateTime,
-            columnDecimal,
-            columnInt,
-            columnVarchar;
+        std::vector<std::vector<std::string>> directory; // Directory containing vectors of all file names
+        std::vector<std::string> filePath; // Directory containing vectors of all file paths
 
     private:
         void Directory(std::string path, std::vector<std::string> &column) {
             for (const auto & entry : fs::directory_iterator(path)) {
-                column.push_back(entry.path().generic_string()); // assigns array of paths for each file inside directory path
+                column.push_back(entry.path().generic_string()); // pushes list of paths for each file from inside directory path
             }
         }
 
-        void GetFileNames(std::string path, std::vector<std::string> &column) { // use array with paths and convert it to file names only 
+        void GetFileNames(std::string path, std::vector<std::string> &column) { // use list with paths and convert it to file names only 
             Directory(path, column);
             if(!column.empty()) {    
                 int i=0;
@@ -41,12 +36,13 @@ class columns
 
     public:
         void CheckDirectories() {
-            GetFileNames("Columns/Date/", columnDate);
-            GetFileNames("Columns/DateTime/", columnDateTime);
-            GetFileNames("Columns/Decimal/", columnDecimal);
-            GetFileNames("Columns/Int/", columnInt);
-            GetFileNames("Columns/Time/", columnTime);
-            GetFileNames("Columns/Varchar/", columnVarchar);
+            for(int i =0; i < this->directory.size(); i++) {
+                GetFileNames(this->filePath[i],this->directory[i]);
+            }
+        }
+        void AddDirectory(std::string filePath, std::vector<std::string> &dirFileName) {
+            this->directory.push_back(dirFileName);
+            this->filePath.push_back(filePath);
         }
 
 };
