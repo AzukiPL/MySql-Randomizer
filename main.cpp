@@ -7,6 +7,8 @@
 columns cols;
 records recs;
 
+            
+void PushVectors() {
 std::vector<std::string> 
             dateFileName,
             dateTimeFileName,
@@ -14,8 +16,6 @@ std::vector<std::string>
             intFileName,
             timeFileName,
             varcharFileName;
-            
-void PushVectors() {
     cols.AddDirectory("Columns/Date/", dateFileName); // id 0
     cols.AddDirectory("Columns/DateTime/", dateTimeFileName); // id 1
     cols.AddDirectory("Columns/Decimal/", decimalFileName); // id 2
