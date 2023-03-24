@@ -16,7 +16,7 @@ class columns
     private:
         void Directory(std::string path, std::vector<std::string> &column) {
             for (const auto & entry : fs::directory_iterator(path)) {
-                column.push_back(entry.path().generic_string()); // pushes list of paths for each file from inside directory path
+                column.emplace_back(entry.path().generic_string()); // pushes list of paths for each file from inside directory path
             }
         }
 
@@ -41,8 +41,8 @@ class columns
             }
         }
         void AddDirectory(std::string filePath, std::vector<std::string> &dirFileName) {
-            this->directory.push_back(dirFileName);
-            this->filePath.push_back(filePath);
+            this->directory.emplace_back(dirFileName);
+            this->filePath.emplace_back(filePath);
         }
 
 };

@@ -21,7 +21,7 @@ class records
             if(columnFile.is_open()) {
                 std::string line;
                 while(std::getline(columnFile,line)) {
-                    this->contentLine.push_back(line);
+                    this->contentLine.emplace_back(line);
                 }
                 columnFile.close();
             }
