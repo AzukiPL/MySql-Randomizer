@@ -4,7 +4,6 @@
 #include <vector>
 #include <filesystem>
 #include <algorithm>
-namespace fs = std::filesystem;
 
 class columns
 {
@@ -16,6 +15,9 @@ public:
 private:
     void Directory(std::string path, std::vector<std::string> &column)
     {
+        namespace fs = std::filesystem;
+        if(fs::exists(path))
+
         for (const auto &entry : fs::directory_iterator(path))
         {
             column.emplace_back(entry.path().generic_string()); // pushes list of paths for each file from inside directory path

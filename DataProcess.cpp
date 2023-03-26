@@ -60,11 +60,30 @@ private:
         std::cout << ")";
     }
 
+    void GetVariableType()
+    {
+        int i = 0;
+        for (auto &vec : cols.directory)
+        {
+            if (!vec.empty())
+            {
+                for(auto& str : vec) {
+                    std::string filePath = cols.filePath[i];
+                    filePath.erase(filePath.begin(), filePath.begin() + 8);
+                    filePath.erase(filePath.end() - 1, filePath.end());
+                    std::cout << filePath << std::endl;
+                }
+            }
+            i++;
+        }
+    }
+
 public:
-    void SQLInsert()
+    void SQLRandomizer()
     {
         GetVectors();
         AskTableName();
         OutputColumnNames();
+        GetVariableType();
     }
 };

@@ -1,9 +1,14 @@
-#include <iostream>
 #include "DataProcess.cpp"
 DataProcess dadPro;
 
+
+
 int main()
 {
+
+    dadPro.SQLRandomizer();
+
+
     //     int i =0;
     // for(auto& vec : cols.directory) {
     //     if(!vec.empty())
@@ -16,5 +21,4 @@ int main()
     //     }
     //     i++;
     // }
-    dadPro.SQLInsert();
 }
