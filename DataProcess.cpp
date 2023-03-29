@@ -9,6 +9,7 @@ private:
     std::string tableName;
 
 private:
+
     void GetVectors()
     {
         std::vector<std::string> fileNames[6]; // declaring all vectors i need
@@ -20,27 +21,27 @@ private:
             "Columns/Time/",
             "Columns/Varchar/",
         };
-        cols.directory.reserve(fileNames->size()); // reserving space in container for these vectors inside the columns class
+        this->cols.directory.reserve(fileNames->size()); // reserving space in container for these vectors inside the columns class
         int i = 0;
         for (auto &name : fileNames)
         {
-            cols.AddDirectory(path[i], name);
+            this->cols.AddDirectory(path[i], name);
             i++;
         }
-        cols.CheckDirectories(); // checks assigned directories and find files inside them
+        this->cols.CheckDirectories(); // checks assigned directories and find files inside them
     }
 
     void AskTableName()
     {
         std::cout << "enter table name: ";
-        std::cin >> tableName;
+        std::cin >> this->tableName;
     }
 
     void OutputColumnNames()
     {
-        std::cout << "INSERT INTO " << tableName << " (";
+        std::cout << "INSERT INTO " << this->tableName << " (";
         int i = 0;
-        for (auto &vec : cols.directory)
+        for (auto &vec : this->cols.directory)
         {
             if (!vec.empty()) // if there file names inside vector directory = true, else move to next vector
             {
@@ -63,15 +64,15 @@ private:
     void GetVariableType()
     {
         int i = 0;
-        for (auto &vec : cols.directory)
+        for (auto &vec : this->cols.directory)
         {
             if (!vec.empty())
             {
                 for(auto& str : vec) {
-                    std::string filePath = cols.filePath[i];
+                    std::string filePath = this->cols.filePath[i];
                     filePath.erase(filePath.begin(), filePath.begin() + 8);
                     filePath.erase(filePath.end() - 1, filePath.end());
-                    std::cout << filePath << std::endl;
+                    //
                 }
             }
             i++;
